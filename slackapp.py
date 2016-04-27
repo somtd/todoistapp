@@ -8,7 +8,7 @@ url = "https://slack.com/api/chat.postMessage"
 params = {'token': os.environ["SLACK_TOKEN"],
           'channel': os.environ["SLACK_CHANNEL"],
           'username': 'Todoist Bot',
-          'icon_url': 'https://blog.todoist.com/wp-content/uploads/2015/09/todoist-logo.png'
+          'icon_url': 'https://blog.todoist.com/wp-content/uploads/2015/09/todoist-logo.png',
           'text': 'test post'
           }
 
