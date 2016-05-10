@@ -22,7 +22,9 @@ def test_post():
 
 
 def main():
+    print("test post")
     test_post()
+
 
 if __name__ == '__main__':
     main()
