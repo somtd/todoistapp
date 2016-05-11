@@ -4,6 +4,7 @@
 /build
 /dist
 /.idea
+.cat
 
 .*.swp
 *.pyc
