@@ -55,7 +55,7 @@ def generate_posts():
         for item in yesterday_completed_items:
             posts.append(':ballot_box_with_check: ' + item + '\n')
     else:
-        posts.append(':sob:Nothing.\n')
+        posts.append('Nothing.:sob:\n')
 
     posts.append("\n\n:warning: *Today's uncompleted task*\n")
     today_items = get_today_items()
@@ -63,7 +63,7 @@ def generate_posts():
         for item in today_items:
             posts.append(':white_medium_square: ' + item + '\n')
     else:
-        posts.append(':sleepy:Nothing.\n')
+        posts.append('Nothing.:sleepy:\n')
 
     posts.append("\n\n:warning: *Other uncompleted task*\n")
     uncompleted_items = get_uncompleted_items()
