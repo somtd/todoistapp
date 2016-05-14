@@ -440,9 +440,10 @@ class TodoistAPI(object):
                                 'service': service,
                                 'dont_notify': dont_notify})
 
-    def get_all_completed_items(self, **kwargs):
+    def get_all_completed_items(self, kwargs: object) -> object:
         """
         Returns all user's completed items.
+        :rtype: object
         """
         params = {'token': self.token}
         params.update(kwargs)
