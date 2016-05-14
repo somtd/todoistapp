@@ -1,1 +1,1 @@
-web: python todoistapp.py
+web: python slackapp.py
