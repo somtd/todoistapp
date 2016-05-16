@@ -47,12 +47,32 @@ def get_yesterday_completed_items():
     # print(yesterday_completed_items)
     return yesterday_completed_items
 
+def get_today_completed_items():
+    today_completed_items = []
+    today = date.today()
+    api = todoist.TodoistAPI(token=os.environ["TODOIST_TOKEN"])
+    response = api.get_all_completed_items(kwargs='')
+    for item in response['items']:
+        completed_date = datetime.strptime(item['completed_date'], '%a %d %b %Y %H:%M:%S +0000')
+        if today == completed_date.date():
+            today_completed_items.append(item['content'])
+    # print(yesterday_completed_items)
+    return today_completed_items
+
 
 def generate_posts():
     posts = ["\n:heavy_check_mark: *Yesterday's completed task*\n"]
     yesterday_completed_items = get_yesterday_completed_items()
     if len(yesterday_completed_items) != 0:
         for item in yesterday_completed_items:
+            posts.append(':ballot_box_with_check: ' + item + '\n')
+    else:
+        posts.append('Nothing.:sob:\n')
+
+    posts.append("\n:heavy_check_mark: *Today's completed task*\n")
+    today_completed_items = get_today_completed_items()
+    if len(today_completed_items) != 0:
+        for item in today_completed_items:
             posts.append(':ballot_box_with_check: ' + item + '\n')
     else:
         posts.append('Nothing.:sob:\n')
