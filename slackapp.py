@@ -17,9 +17,8 @@ def get_today_items():
         if item['due_date'] != None:
             due_date = datetime.strptime(item['due_date'], '%a %d %b %Y %H:%M:%S +0000')
             if date.today() == due_date.date():
-                #print(item['due_date'])
                 today_items.append(item['content'])
-    #print(today_items)
+    # print(today_items)
     return today_items
 
 
@@ -29,22 +28,23 @@ def get_uncompleted_items():
     response = api.sync(resource_types=['items'])
     for item in response['Items']:
         if item['due_date'] != None:
-            #print(item['due_date'])
-            uncompleted_items.append(item['content'])
-    #print(uncompleted_items)
+            due_date = datetime.strptime(item['due_date'], '%a %d %b %Y %H:%M:%S +0000')
+            if date.today() != due_date.date():
+                uncompleted_items.append(item['content'])
+    # print(uncompleted_items)
     return uncompleted_items
 
 
 def get_yesterday_completed_items():
     yesterday_completed_items = []
-    yesterday = date.today()-timedelta(days=1)
+    yesterday = date.today() - timedelta(days=1)
     api = todoist.TodoistAPI(token=os.environ["TODOIST_TOKEN"])
     response = api.get_all_completed_items(kwargs='')
     for item in response['items']:
         completed_date = datetime.strptime(item['completed_date'], '%a %d %b %Y %H:%M:%S +0000')
         if yesterday == completed_date.date():
             yesterday_completed_items.append(item['content'])
-    #print(yesterday_completed_items)
+    # print(yesterday_completed_items)
     return yesterday_completed_items
 
 
